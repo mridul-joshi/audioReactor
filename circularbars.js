@@ -17,11 +17,11 @@ container.addEventListener('click', function(){
     analyser = audioContext.createAnalyser();        //analyser Node for audio time and frequency data needed for visulaizers
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);      //connecting to local speakers 
-    analyser.fftSize = 128;                       // no of audio samples we want in our audio data file
+    analyser.fftSize = 512;                       // no of audio samples we want in our audio data file
     const bufferLength = analyser.frequencyBinCount;   //read only property  contains no of dat values in our data analyser file
     const dataArray  = new Uint8Array(bufferLength)   //unassigned 8 bit integers format
 
-    const barWidth = (canvas.width/2)/bufferLength;          // single bar in our visualizer
+    const barWidth = (canvas.width)*4/bufferLength;          // single bar in our visualizer
     let barHeigth;
     let x = 0;
 
@@ -49,7 +49,7 @@ file.addEventListener('change', function(){
     analyser = audioContext.createAnalyser();        //analyser Node for audio time and frequency data needed for visulaizers
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);      //connecting to local speakers 
-    analyser.fftSize = 128;                       // no of audio samples we want in our audio data file
+    analyser.fftSize = 512;                       // no of audio samples we want in our audio data file
     const bufferLength = analyser.frequencyBinCount;   //read only property  contains no of dat values in our data analyser file
     const dataArray  = new Uint8Array(bufferLength)   //unassigned 8 bit integers format
 
@@ -76,7 +76,7 @@ function drawVisualizer(bufferLength , x, barWidth ,barHeigth ,dataArray){
         barHeigth = dataArray[i]*1.5 ;               //bar height adjuster         for stattic circle dataArray[i]*1.5 + 10;
         ctx.save();
         ctx.translate(canvas.width/2 , canvas.height/2)    // set rotation center points
-        ctx.rotate(i * Math.PI *4/bufferLength);                            // i+ for circle and i* for spiral
+        ctx.rotate(i * Math.PI *8/bufferLength);                            // i+ for circle and i* for spiral
         //const red = i*barHeigth/20;
         //const green = i*4;
         //const blue = barHeigth/2;

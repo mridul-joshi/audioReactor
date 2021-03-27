@@ -1,5 +1,4 @@
 // rectangle bars java script
-
 const container = document.getElementById("container");
 const canvas = document.getElementById("canvas1");
 const file = document.getElementById("upload");
