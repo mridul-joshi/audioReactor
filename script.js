@@ -74,10 +74,10 @@ function drawVisualizer(bufferLength , x, barWidth ,barHeigth ,dataArray){
     //visualizer
     for(let i=0; i<bufferLength; i++){
         barHeigth = dataArray[i] *2;               //bar height adjuster
-        const red = i*barHeigth/20;
-        const green = i*4;
-        const blue = barHeigth/2;
-        ctx.fillStyle = 'rgb('+ red + ',' + green + ',' + blue + ')';
+        const hue = i*barHeigth/20;
+        //const green = i*4;
+        //const blue = barHeigth/2;
+        ctx.fillStyle = 'hsl('+ hue + ',100%,50%)';
         ctx.fillRect(canvas.width/2-x, canvas.height - barHeigth, barWidth ,barHeigth); //drawing rectanle on canvas
         x += barWidth;  //putting bar next to each other
 
@@ -86,10 +86,10 @@ function drawVisualizer(bufferLength , x, barWidth ,barHeigth ,dataArray){
     //2nd set of bars
     for(let i=0; i<bufferLength; i++){
         barHeigth = dataArray[i] *2;               //bar height adjuster
-        const red = i*barHeigth/20;
-        const green = i*4;
-        const blue = barHeigth/2;
-        ctx.fillStyle = 'rgb('+ red + ',' + green + ',' + blue + ')';
+        const hue = i*barHeigth/20;
+        //const green = i*4;
+        //const blue = barHeigth/2;
+        ctx.fillStyle = 'hsl('+ hue + ',100%,50%)';
         ctx.fillRect(x, canvas.height - barHeigth, barWidth ,barHeigth); //drawing rectanle on canvas
         x += barWidth;  //putting bar next to each other
 
