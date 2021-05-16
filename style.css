@@ -1,35 +1,41 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;    /* independent of any browser */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* independent of any browser */
 }
 
-#container{
-    position: absolute;
-    background: black;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+#container {
+  position: absolute;
+  background: black;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
-#canvas1{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+#canvas1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-#audio1{
-    width: 50%;
-    margin: 50px auto;
-    display: block;
+#audio1 {
+  width: 50%;
+  margin: 50px auto;
+  display: block;
 }
 
-#upload{
-    position: absolute;
-    color: white;
-    top :150px;
-    z-index: 100;
+#upload {
+  position: absolute;
+  color: white;
+  top: 150px;
+  z-index: 100;
+}
+
+a {
+  position: relative;
+  top: 100px;
+  left: 20px;
 }

@@ -5,6 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            "file": "${workspaceFolder}/Menu/main.html"
+        },
+        {
+            "name": "Launch Edge",
+            "request": "launch",
+            "type": "pwa-msedge",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            "file": "${file}"
+        },
+        
+        {
             "name": "Launch Edge",
             "request": "launch",
             "type": "pwa-msedge",
@@ -15,7 +32,7 @@
             "type": "pwa-msedge",
             "request": "launch",
             "name": "Open index.html",
-            "file": "d:\\Study\\Projects\\audioReactor\\index.html"
+            "file": "${file}"
         }
     ]
 }
