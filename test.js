@@ -1,4 +1,3 @@
-// rectangle bars java script
 const container = document.getElementById("container");
 const canvas = document.getElementById("canvas1");
 const file = document.getElementById("upload");
@@ -18,11 +17,11 @@ container.addEventListener('click', function(){
     analyser = audioContext.createAnalyser();        //analyser Node for audio time and frequency data needed for visulaizers
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);      //connecting to local speakers 
-    analyser.fftSize = 64;                       // no of audio samples we want in our audio data file
+    analyser.fftSize = 2048;                       // no of audio samples we want in our audio data file
     const bufferLength = analyser.frequencyBinCount;   //read only property  contains no of dat values in our data analyser file
     const dataArray  = new Uint8Array(bufferLength)   //unassigned 8 bit integers format
 
-    const barWidth = (canvas.width/2)/bufferLength;          // single bar in our visualizer
+    const barWidth = 15;          // single bar in our visualizer
     let barHeigth;
     let x = 0;
 
@@ -39,18 +38,18 @@ container.addEventListener('click', function(){
 });
 
 
-file.addEventListener('change', function(){              //everytime a new file is selected
-    const files = this.files;                               //file list object
+file.addEventListener('change', function(){
+    const files = this.files;
     const audio1 = document.getElementById('audio1');
-    audio1.src = URL.createObjectURL(files[0]);             //0 index in the object contains the song
-    audio1.load();                                      // used to update the audio element after changing source or oy=ther settings
+    audio1.src = URL.createObjectURL(files[0]);
+    audio1.load();
     audio1.play();
 
     audioSource = audioContext.createMediaElementSource(audio1);
     analyser = audioContext.createAnalyser();        //analyser Node for audio time and frequency data needed for visulaizers
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);      //connecting to local speakers 
-    analyser.fftSize = 64;                       // no of audio samples we want in our audio data file
+    analyser.fftSize = 2048;                       // no of audio samples we want in our audio data file
     const bufferLength = analyser.frequencyBinCount;   //read only property  contains no of dat values in our data analyser file
     const dataArray  = new Uint8Array(bufferLength)   //unassigned 8 bit integers format
 
@@ -72,29 +71,24 @@ file.addEventListener('change', function(){              //everytime a new file 
 
 function drawVisualizer(bufferLength , x, barWidth ,barHeigth ,dataArray){
     //visualizer
+   
     for(let i=0; i<bufferLength; i++){
-        barHeigth = dataArray[i] *2;               //bar height adjuster
-        const hue = i*barHeigth/20;
+        barHeigth = dataArray[i]*1.5 ;               //bar height adjuster         for stattic circle dataArray[i]*1.5 + 10;
+        ctx.save();
+        ctx.translate(canvas.width/2 , canvas.height/2)    // set rotation center points
+        ctx.rotate(i * 4);                            // i+ for circle and i* for spiral
+        //const red = i*barHeigth/20;
         //const green = i*4;
         //const blue = barHeigth/2;
-        ctx.fillStyle = 'hsl('+ hue + ',100%,50%)';
-        ctx.fillRect(canvas.width/2-x, canvas.height - barHeigth, barWidth ,barHeigth); //drawing rectanle on canvas
+        const hue = i*0.3;
+
+        ctx.fillStyle = 'hsl('+ hue + ',100%,'+ barHeigth/3 + '%)';
+        ctx.fillRect(0, 0, barWidth ,barHeigth); //drawing rectanle on canvas
         x += barWidth;  //putting bar next to each other
-
+        ctx.restore();
     }
+    
 
-    //2nd set of bars
-    for(let i=0; i<bufferLength; i++){
-        barHeigth = dataArray[i] *2;               //bar height adjuster
-        const hue = i*barHeigth/20;
-        //const green = i*4;
-        //const blue = barHeigth/2;
-        ctx.fillStyle = 'hsl('+ hue + ',100%,50%)';
-        ctx.fillRect(x, canvas.height - barHeigth, barWidth ,barHeigth); //drawing rectanle on canvas
-        x += barWidth;  //putting bar next to each other
-
-    }
+    
 
 }
-
-
